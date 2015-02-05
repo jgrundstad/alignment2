@@ -24,13 +24,13 @@ use flagstats;
 use target_coverage;
 
 my @GENERATORS = (
-  fastx::new(),
-  bwa_mem_pe::new(),
-  picard_sort_pe::new(),
-  picard_rmdup_pe::new(),
-  flagstats::new(),
-  target_coverage::new(),
-);
+    fastx::new(),
+    bwa_mem_pe::new(),
+    picard_sort_pe::new(),
+    picard_rmdup_pe::new(),
+    flagstats::new(),
+    target_coverage::new(),
+    );
 
 # Parse command line arguments
 if(scalar @ARGV < 3) { print "Usage: <job_name_prefix> <max_nodes> [<file>]+\n" and exit; }
@@ -38,11 +38,11 @@ our $JOB_NAME = shift;
 our $MAX_NODES = shift;
 our %SAMPLES = ();
 foreach my $sample (@ARGV) { # e.g. 2011-1502_111228_SN673_0122_AC028YACXX_1_1_sequence.txt.gz
-  if($sample =~ /^(\S+)_1_sequence\.txt\.gz$/) {
-    print "$sample\n";
-    $SAMPLES{$1}{f1} = $1."_1_sequence.txt.gz";
-    $SAMPLES{$1}{f2} = $1."_2_sequence.txt.gz";
-  }
+    if($sample =~ /^(\S+)_1_sequence\.txt\.gz$/) {
+	print "$sample\n";
+	$SAMPLES{$1}{f1} = $1."_1_sequence.txt.gz";
+	$SAMPLES{$1}{f2} = $1."_2_sequence.txt.gz";
+    }
 }
 
 # Global namespace definitions

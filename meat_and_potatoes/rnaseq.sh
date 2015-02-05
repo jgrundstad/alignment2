@@ -7,8 +7,8 @@
 # Check if we're in a Torque environment.
 if [[ -z $PBS_ENVIRONMENT ]]; then
   # Not in a Torque environment - submit to queue and exit.
-  [ -z "$1" ] && echo "At least one file must be provided." && exit 1
-  [ ! -z "$2" ] && qsub -v F1=$1,F2=$2 $0 || qsub -v F1=$1 $0
+    [ -z "$1" ] && echo "At least one file must be provided." && exit 1
+    [ ! -z "$2" ] && qsub -v F1=$1,F2=$2 $0 || qsub -v F1=$1 $0
   exit
 fi
 
@@ -26,7 +26,7 @@ B2ARGS+=(--non-deterministic) # Seed random number generator with current time.
 
 cd $PBS_O_WORKDIR
 if [ -z "$F2" ]; then
-  $BOWTIE $B2ARGS -x $GENEDB -U <(zcat ${F1})
+    $BOWTIE $B2ARGS -x $GENEDB -U <(zcat ${F1})
 else
-  $BOWTIE $B2ARGS -x $GENEDB -1 <(zcat ${F1}) -2 <(${F2})
+    $BOWTIE $B2ARGS -x $GENEDB -1 <(zcat ${F1}) -2 <(${F2})
 fi
